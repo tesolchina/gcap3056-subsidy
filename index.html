@@ -1,0 +1,40 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GCAP 3056 — Subsidy Form Status</title>
+<style>
+ body{font-family:system-ui,-apple-system,sans-serif;max-width:760px;margin:32px auto;padding:0 16px;color:#1a1a1a}
+ h1{font-size:22px} .sub{color:#5f6368;font-size:14px}
+ table{border-collapse:collapse;width:100%;margin-top:16px;font-size:15px}
+ td,th{border-bottom:1px solid #e5e5e5;padding:9px 8px;text-align:left}
+ .st{font-weight:600;font-size:13px;padding:2px 8px;border-radius:10px;white-space:nowrap}
+ .pending{background:#f1f3f4;color:#5f6368} .received{background:#e8f0fe;color:#1a73e8}
+ .ready{background:#e6f4ea;color:#188038} .wd{background:#fce8e6;color:#c5221f}
+ .legend span{margin-right:12px;font-size:13px}
+ footer{margin-top:22px;font-size:13px;color:#5f6368}
+ a{color:#1a73e8}
+</style></head><body>
+<h1>GCAP 3056 — Student Subsidy Form: status</h1>
+<p class="sub">Fill in the form, sign it, and <b>reply to the class email with the completed form attached</b>.
+This page updates as forms are processed. Questions: <a href="mailto:simonwang@hkbu.edu.hk">simonwang@hkbu.edu.hk</a></p>
+<p class="legend">Legend:
+ <span>⏳ <span class="st pending">pending</span></span>
+ <span>📥 <span class="st received">received</span></span>
+ <span>✅ <span class="st ready">ready</span></span></p>
+<table><thead><tr><th>#</th><th>Student</th><th>Status</th></tr></thead>
+<tbody id="tb"></tbody></table>
+<p class="sub" style="margin-top:10px">Withdrawn (not required): <span id="wd"></span></p>
+<footer>Last updated: 2026-10-22 11:08 HKT · 21 students · maintained by the course agent ·
+<a href="https://github.com/tesolchina/simongtd/issues/15">report an issue</a>
+<!-- agent: data = [{"no": "3166", "name": "Bartosz Budziszewski", "zh": "", "status": "pending"}, {"no": "0302", "name": "Yifan Cao", "zh": "曹藝凡", "status": "pending"}, {"no": "6949", "name": "Zhengxian Chen", "zh": "陳政先", "status": "pending"}, {"no": "8774", "name": "Jasmine Co", "zh": "許佳泓", "status": "pending"}, {"no": "1503", "name": "Daniel Hernandez", "zh": "", "status": "pending"}, {"no": "9660", "name": "Kaiting Huang", "zh": "黃凱婷", "status": "pending"}, {"no": "7716", "name": "Hok Ling Kan", "zh": "簡鶴凌", "status": "pending"}, {"no": "4631", "name": "Chun Hei Lam", "zh": "林震熙", "status": "pending"}, {"no": "9644", "name": "Ka Ho Lau", "zh": "劉嘉浩", "status": "pending"}, {"no": "1041", "name": "Jiatong Li", "zh": "李嘉桐", "status": "pending"}, {"no": "4229", "name": "Shanwen Li", "zh": "李善文", "status": "pending"}, {"no": "4044", "name": "Lucia Luo", "zh": "羅淇", "status": "pending"}, {"no": "4771", "name": "Yeashe Lahmu Sherpa", "zh": "", "status": "pending"}, {"no": "3257", "name": "Xinrui Shuai", "zh": "帥心睿", "status": "pending"}, {"no": "4259", "name": "Cheuk Yan Sun", "zh": "辛卓恩", "status": "pending"}, {"no": "0774", "name": "Sze Ki Wong", "zh": "黃詩棋", "status": "pending"}, {"no": "1207", "name": "Tin Yu Wong", "zh": "王天譽", "status": "pending"}, {"no": "3265", "name": "Jiaxin Wu", "zh": "武嘉欣", "status": "pending"}, {"no": "6896", "name": "Hiu Yu Xian", "zh": "冼曉愉", "status": "pending"}, {"no": "0616", "name": "Haoze Xu", "zh": "許昊澤", "status": "pending"}, {"no": "0516", "name": "Zixi Yuan", "zh": "袁紫曦", "status": "pending"}]; withdrawn = [{"name": "In Sing Chan", "zh": "陳鉉升"}, {"name": "Yu Sum Choi", "zh": "蔡宇琛"}] --></footer>
+<script>
+const DATA = [{"no": "3166", "name": "Bartosz Budziszewski", "zh": "", "status": "pending"}, {"no": "0302", "name": "Yifan Cao", "zh": "曹藝凡", "status": "pending"}, {"no": "6949", "name": "Zhengxian Chen", "zh": "陳政先", "status": "pending"}, {"no": "8774", "name": "Jasmine Co", "zh": "許佳泓", "status": "pending"}, {"no": "1503", "name": "Daniel Hernandez", "zh": "", "status": "pending"}, {"no": "9660", "name": "Kaiting Huang", "zh": "黃凱婷", "status": "pending"}, {"no": "7716", "name": "Hok Ling Kan", "zh": "簡鶴凌", "status": "pending"}, {"no": "4631", "name": "Chun Hei Lam", "zh": "林震熙", "status": "pending"}, {"no": "9644", "name": "Ka Ho Lau", "zh": "劉嘉浩", "status": "pending"}, {"no": "1041", "name": "Jiatong Li", "zh": "李嘉桐", "status": "pending"}, {"no": "4229", "name": "Shanwen Li", "zh": "李善文", "status": "pending"}, {"no": "4044", "name": "Lucia Luo", "zh": "羅淇", "status": "pending"}, {"no": "4771", "name": "Yeashe Lahmu Sherpa", "zh": "", "status": "pending"}, {"no": "3257", "name": "Xinrui Shuai", "zh": "帥心睿", "status": "pending"}, {"no": "4259", "name": "Cheuk Yan Sun", "zh": "辛卓恩", "status": "pending"}, {"no": "0774", "name": "Sze Ki Wong", "zh": "黃詩棋", "status": "pending"}, {"no": "1207", "name": "Tin Yu Wong", "zh": "王天譽", "status": "pending"}, {"no": "3265", "name": "Jiaxin Wu", "zh": "武嘉欣", "status": "pending"}, {"no": "6896", "name": "Hiu Yu Xian", "zh": "冼曉愉", "status": "pending"}, {"no": "0616", "name": "Haoze Xu", "zh": "許昊澤", "status": "pending"}, {"no": "0516", "name": "Zixi Yuan", "zh": "袁紫曦", "status": "pending"}], WD = [{"name": "In Sing Chan", "zh": "陳鉉升"}, {"name": "Yu Sum Choi", "zh": "蔡宇琛"}];
+const LBL = {pending:"⏳ pending", received:"📥 received", ready:"✅ ready"};
+const tb = document.getElementById("tb");
+DATA.forEach((s,i)=>{
+  const tr=document.createElement("tr");
+  tr.innerHTML=`<td>${i+1}</td><td>${s.name}${s.zh?" ("+s.zh+")":""} <span class="sub">***${s.no}</span></td>`+
+    `<td><span class="st ${s.status}">${LBL[s.status]||s.status}</span></td>`;
+  tb.appendChild(tr);
+});
+document.getElementById("wd").textContent = WD.map(w=>w.name).join(", ");
+</script></body></html>
